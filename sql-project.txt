@@ -1,0 +1,75 @@
+#question-1
+SELECT *
+FROM movies;
+
+#question-2
+SELECT *
+FROM directors;
+
+#question-3
+SELECT COUNT(*)
+FROM movies;
+
+#question-4
+SELECT *
+FROM directors
+WHERE name IN ('James Cameron', 'Luc Besson', 'John Woo');
+
+#question-5
+SELECT *
+FROM directors
+WHERE name LIKE 'Steven%';
+
+#question-6
+SELECT COUNT(*)
+FROM directors
+WHERE gender = 1;
+
+#question-7
+SELECT name
+FROM directors
+WHERE gender = 1
+ORDER BY id
+LIMIT 10;
+
+#question-8
+SELECT title, popularity
+FROM movies
+ORDER BY popularity DESC
+LIMIT 3;
+
+#question-9
+SELECT title, revenue
+FROM movies
+ORDER BY revenue DESC
+LIMIT 3;
+
+#question-10
+SELECT vote_average, COUNT(*) AS movie_count
+FROM movies
+WHERE release_date >= '2000-01-01'
+GROUP BY vote_average
+ORDER BY movie_count DESC
+LIMIT 1;
+
+#question-11
+SELECT movies.title
+FROM movies
+JOIN directors ON directors.id = movies.director_id
+WHERE directors.name = 'Brenda Chapman';
+
+#question-12
+SELECT directors.name, COUNT(*) AS movie_count
+FROM movies
+JOIN directors ON directors.id = movies.director_id
+GROUP BY directors.id
+ORDER BY movie_count DESC
+LIMIT 1;
+
+#question-13
+SELECT directors.name, SUM(movies.revenue) AS total_revenue
+FROM movies
+JOIN directors ON directors.id = movies.director_id
+GROUP BY directors.id
+ORDER BY total_revenue DESC
+LIMIT 1;
